@@ -383,6 +383,8 @@ in
 
   makeDesktopItem = callPackage ../build-support/make-desktopitem { };
 
+  makeDummyGitDir = callPackage ../build-support/make-dummy-git-dir { };
+
   makeAutostartItem = callPackage ../build-support/make-startupitem { };
 
   makeInitrd = callPackage ../build-support/kernel/make-initrd.nix; # Args intentionally left out

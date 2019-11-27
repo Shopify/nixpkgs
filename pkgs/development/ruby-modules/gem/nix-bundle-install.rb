@@ -89,7 +89,7 @@ if type == "git"
     def checkout
       unless path.exist?
         FileUtils.mkdir_p(path.dirname)
-        FileUtils.cp_r(File.join(REPO, ".git"), path)
+        FileUtils.ln_sf(File.expand_path(File.join(REPO, ".git")), path)
         system("chmod -R +w #{path}")
       end
     end

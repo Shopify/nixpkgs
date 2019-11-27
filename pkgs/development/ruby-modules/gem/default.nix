@@ -19,7 +19,7 @@
 # $out/bin.
 
 { lib, fetchurl, fetchgit, makeWrapper, git, darwin
-, ruby, bundler
+, ruby, bundler, makeDummyGitDir
 } @ defs:
 
 lib.makeOverridable (
@@ -61,8 +61,10 @@ let
         inherit (attrs.source) sha256;
       }
     else if type == "git" then
-      fetchgit {
-        inherit (attrs.source) url rev sha256 fetchSubmodules;
+      makeDummyGitDir {
+        src = fetchgit {
+          inherit (attrs.source) url rev sha256 fetchSubmodules;
+        };
       }
     else if type == "url" then
       fetchurl attrs.source
@@ -84,7 +86,7 @@ stdenv.mkDerivation ((builtins.removeAttrs attrs ["source"]) // {
 
   buildInputs = [
     ruby makeWrapper
-  ] ++ lib.optionals (type == "git") [ git ]
+  ] ++ lib.optionals (type == "git") [ git src ]
     ++ lib.optionals (type != "gem") [ bundler ]
     ++ lib.optional stdenv.isDarwin darwin.libobjc
     ++ buildInputs;
@@ -93,7 +95,6 @@ stdenv.mkDerivation ((builtins.removeAttrs attrs ["source"]) // {
   name = attrs.name or "${namePrefix}${gemName}-${version}";
 
   inherit src;
-
 
   unpackPhase = attrs.unpackPhase or ''
     runHook preUnpack
@@ -142,12 +143,6 @@ stdenv.mkDerivation ((builtins.removeAttrs attrs ["source"]) // {
       gempkg=$(echo "$output" | grep -oP 'File: \K(.*)')
 
       echo "gem package built: $gempkg"
-    elif [[ "$type" == "git" ]]; then
-      git init
-      # remove variations to improve the likelihood of a bit-reproducible output
-      rm -rf .git/logs/ .git/hooks/ .git/index .git/FETCH_HEAD .git/ORIG_HEAD .git/refs/remotes/origin/HEAD .git/config
-      # support `git ls-files`
-      git add .
     fi
 
     runHook postBuild
@@ -179,7 +174,7 @@ stdenv.mkDerivation ((builtins.removeAttrs attrs ["source"]) // {
       '${version}' \
       '${lib.escapeShellArgs buildFlags}' \
       '${attrs.source.url}' \
-      '.' \
+      '${src}' \
       '${attrs.source.rev}'
     ''}
 
