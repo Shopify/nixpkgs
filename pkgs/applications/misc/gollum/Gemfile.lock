@@ -83,7 +83,7 @@ GEM
       webrick (~> 1.8)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    rexml (3.3.2)
+    rexml (3.3.6)
       strscan
     rouge (3.30.0)
     rss (0.3.0)
@@ -120,7 +120,7 @@ GEM
       unf_ext
     unf_ext (0.0.9.1)
     useragent (0.16.10)
-    webrick (1.8.1)
+    webrick (1.8.2)
     wikicloth (0.8.3)
       builder
       expression_parser
