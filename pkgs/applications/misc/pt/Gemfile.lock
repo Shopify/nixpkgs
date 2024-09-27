@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -15,7 +15,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     equalizer (0.0.11)
-    excon (0.64.0)
+    excon (0.71.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
@@ -35,7 +35,7 @@ GEM
       hirb-unicode (~> 0.0.5, >= 0.0.5)
       thor
       tracker_api (~> 1.6.0)
-    public_suffix (3.0.3)
+    public_suffix (4.0.7)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
