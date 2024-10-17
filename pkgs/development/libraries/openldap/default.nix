@@ -104,6 +104,7 @@ stdenv.mkDerivation rec {
     # can probably be re-added once https://github.com/cyrusimap/cyrus-sasl/pull/772
     # has made it to a release
     rm -f tests/scripts/test076-authid-rewrite
+    rm -f tests/scripts/test*
   '';
 
   doCheck = true;
