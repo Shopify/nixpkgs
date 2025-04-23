@@ -61,6 +61,11 @@ stdenv.mkDerivation (finalAttrs: {
   ] ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [ rpcsvc-proto ];
 
   patches = [
+    # adapted from mysql80's llvm 19 fixes
+    ./libcpp-fixes.patch
+    # https://github.com/percona/percona-server/pull/5537
+    # https://github.com/Homebrew/homebrew-core/pull/204799
+    ./ps-9641.patch
     ./no-force-outline-atomics.patch # Do not force compilers to turn on -moutline-atomics switch
     ./coredumper-explicitly-import-unistd.patch # fix build on aarch64-linux
   ];
