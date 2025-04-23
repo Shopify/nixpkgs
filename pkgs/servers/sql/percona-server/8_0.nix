@@ -62,6 +62,9 @@ stdenv.mkDerivation (finalAttrs: {
   ] ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [ rpcsvc-proto ];
 
   patches = [
+    # https://github.com/percona/percona-server/pull/5537
+    # https://github.com/Homebrew/homebrew-core/pull/204799
+    ./ps-9641.patch
     ./no-force-outline-atomics.patch # Do not force compilers to turn on -moutline-atomics switch
   ];
 
