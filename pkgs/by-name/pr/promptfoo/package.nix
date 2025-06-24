@@ -27,4 +27,7 @@ buildNpmPackage rec {
     license = lib.licenses.mit;
     maintainers = [ lib.maintainers.nathanielbrough ];
   };
+
+   # Prevent Playwright download as that will cause the package build to fail
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
 }
