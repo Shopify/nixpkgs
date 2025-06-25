@@ -6,16 +6,16 @@
 
 buildNpmPackage rec {
   pname = "promptfoo";
-  version = "0.115.1";
+  version = "0.115.3";
 
   src = fetchFromGitHub {
     owner = "promptfoo";
     repo = "promptfoo";
     rev = "${version}";
-    hash = "sha256-KGi5IV4R0WOvshTrVaVN3u0pO8as/A4/858JlFOdc0c=";
+    hash = "sha256-JBDz3kb++oR84mcU5Fxk28NCc5OfLThvBpAD7GiMZx4=";
   };
 
-  npmDepsHash = "sha256-vkZx2c5vvjHM8kSLukL7YQwRLnwSdFLa+xKhn+ekuts=";
+  npmDepsHash = "sha256-1SfaX3XrmSVXpZKuSbM4LdO7F4d0NCpa1QcpasEMoBw=";
 
   meta = {
     description = "Test your prompts, models, RAGs. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality";
