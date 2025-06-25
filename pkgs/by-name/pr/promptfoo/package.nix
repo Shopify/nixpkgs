@@ -17,8 +17,6 @@ buildNpmPackage rec {
 
   npmDepsHash = "sha256-vkZx2c5vvjHM8kSLukL7YQwRLnwSdFLa+xKhn+ekuts=";
 
-  dontNpmBuild = true;
-
   meta = {
     description = "Test your prompts, models, RAGs. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality";
     mainProgram = "promptfoo";
